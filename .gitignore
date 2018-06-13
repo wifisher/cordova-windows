@@ -43,7 +43,6 @@ node_modules/esutils/
 node_modules/exit/
 node_modules/fast-levenshtein/
 node_modules/fileset/
-node_modules/fs.realpath/
 node_modules/gaze/
 node_modules/growl/
 node_modules/handlebars/
