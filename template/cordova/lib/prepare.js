@@ -764,11 +764,18 @@ function updateWww (cordovaProject, destinations) {
         sourceDirs.push(path.join('merges', 'windows'));
     }
 
+    var excludes = '';
+    var excludePref = cordovaProject.projectConfig.getPreference('wwwExcludes');
+    if (excludePref) {
+        excludes = excludePref.split(',');
+        events.emit('verbose', 'excludes: ' + excludes.join());
+    }
+       
     var targetDir = path.relative(cordovaProject.root, destinations.www);
     events.emit(
         'verbose', 'Merging and updating files from [' + sourceDirs.join(', ') + '] to ' + targetDir);
     FileUpdater.mergeAndUpdateDir(
-        sourceDirs, targetDir, { rootDir: cordovaProject.root }, logFileOp);
+        sourceDirs, targetDir, { rootDir: cordovaProject.root, exclude: excludes }, logFileOp);
 }
 
 /**
